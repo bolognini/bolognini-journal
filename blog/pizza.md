@@ -8,6 +8,10 @@ title: Pizza!
 Texto normal de parágrafo. Textos maneiros para deixar cheio aqui Textos maneiros para deixar cheio aqui Textos maneiros para deixar cheio aqui Textos maneiros para deixar cheio aqui Textos maneiros para deixar cheio aquiTextos maneiros para deixar cheio aqui.
 
 ## Uau, Pizza de H2
+### Uau, Pizza de H3
+#### Uau, Pizza de H4
+##### Uau, Pizza de H5
+###### Uau, Pizza de H6
 
 Pizza é **muito bom**!
 
@@ -20,7 +24,7 @@ if (pizza) { return felicidade}
 * Frango com Catupiry
 * Pepperoni
 
-return true
+`return true`
 
 [ww.google.com](ww.google.com)
 
