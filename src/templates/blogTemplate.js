@@ -1,22 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
+import Layout from '../components/Layout'
+import { Wrapper, Title } from './blogTemplate.style'
 
-export default function Template({
-  data, // this prop will be injected by the GraphQL query below.
+export default function Template ({
+  data,
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds our post data
+  const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
+
+  const [color, setColor] = useState('light')
+  const [layout, setLayout] = useState('cozy')
+
   return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
-    </div>
+    <Layout color={color} layout={layout}>
+      <Wrapper>
+        <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
+        <button onClick={() => layout === 'cozy' ? setLayout('compact') : setLayout('cozy')}>Compact Layout</button>
+        <button onClick={() => {
+          color === 'light' ? setColor('dark') : setColor('light')
+          layout === 'cozy' ? setLayout('compact') : setLayout('cozy')
+        }}>Ambos</button>
+          
+        <div>
+          <Title>{frontmatter.title}</Title>
+          <div
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </div>
+      </Wrapper>
+    </Layout>
   )
 }
 
