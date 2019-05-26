@@ -14,13 +14,13 @@ export default function Template ({
 
   return (
     <Layout color={color} layout={layout}>
+      <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
+      <button onClick={() => layout === 'cozy' ? setLayout('compact') : setLayout('cozy')}>Compact Layout</button>
+      <button onClick={() => {
+        color === 'light' ? setColor('dark') : setColor('light')
+        layout === 'cozy' ? setLayout('compact') : setLayout('cozy')
+      }}>Ambos</button>
       <Wrapper>
-        <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
-        <button onClick={() => layout === 'cozy' ? setLayout('compact') : setLayout('cozy')}>Compact Layout</button>
-        <button onClick={() => {
-          color === 'light' ? setColor('dark') : setColor('light')
-          layout === 'cozy' ? setLayout('compact') : setLayout('cozy')
-        }}>Ambos</button>
           
         <div>
           <Title>{frontmatter.title}</Title>
