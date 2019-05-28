@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from '../components/Layout'
-import { Wrapper, Title } from './blogTemplate.style'
+import { Wrapper, Title, Loader } from './blogTemplate.style'
 
 export default function Template ({
   data,
@@ -10,8 +10,14 @@ export default function Template ({
   const { frontmatter, html } = markdownRemark
 
   const [color, setColor] = useState('light')
+  const [visibility, setVisibility] = useState(false)
   const [layout, setLayout] = useState('cozy')
-
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setVisibility(true)
+    }, 3000)
+  }, []);
   return (
     <Layout color={color} layout={layout}>
       <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
@@ -21,8 +27,10 @@ export default function Template ({
         layout === 'cozy' ? setLayout('compact') : setLayout('cozy')
       }}>Ambos</button>
       <Wrapper>
-          
-        <div>
+        <div style={{display: visibility ? 'none': 'block' }}>
+          <Loader/>
+        </div>
+        <div style={{display: visibility ? 'block' : 'none' }}>
           <Title>{frontmatter.title}</Title>
           <div
             dangerouslySetInnerHTML={{ __html: html }}
