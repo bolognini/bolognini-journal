@@ -18,7 +18,10 @@ export const design = {
   hugeText: '24px',
   largeText: '18px',
   mediumText: '16px',
-  smallText: '12px'
+  smallText: '12px',
+  cardBoxShadow: '6px 8px 20px 0 rgba(0, 0, 0, 0.08)',
+  buttonBoxShadow: '0 2px 10px 2px rgba(0, 0, 0, 0.2)',
+  inputBoxShadow: '0 2px 10px 2px rgba(0, 0, 0, 0.07)'
 }
 
 export const backgroundColor = theme('mode', {
@@ -29,6 +32,24 @@ export const backgroundColor = theme('mode', {
 export const textColor = theme('mode', {
   light: design.outerSpace,
   dark: design.wildSand
+})
+
+export const cardPosition = theme('position', {
+  flex:`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+  grid:`
+    @supports (display: grid) {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
+    display: flex;
+  `
 })
 
 export const padding = theme('layout', {
@@ -52,9 +73,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Layout = ({ children, color, layout }) => {
+const Layout = ({ children, color, layout, position }) => {
   return (
-    <ThemeProvider theme={{ mode: color, layout: layout }}>
+    <ThemeProvider theme={{ mode: color, layout: layout, position: position }}>
       <Fragment>
         <GlobalStyle />
         <Header />
