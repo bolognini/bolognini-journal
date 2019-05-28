@@ -1,77 +1,81 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Burger from '../../static/assets/menu.svg'
+import Square from '../../static/assets/four-black-squares.svg'
 import Layout, { design, backgroundColor, textColor, cardPosition } from '../components/Layout'
 
-const CardWrapper = styled.div`
+const Section = styled.section`
+  min-height: calc(100vh - 71px);
   background-color: ${backgroundColor};
+  padding-bottom: 24px;
+`
+
+const CardWrapper = styled.div`
   color: ${textColor};
   padding: 32px 0;
+  max-width: 960px;
+  padding: 0 100px;
+  margin: 0 auto;
   ${cardPosition};
 `
 
 const Card = styled.div`
-  width: 50%;
-  height: 150px;
-  margin: 16px 0;
+  @supports (display: grid) {
+    width: ${props => props.position === 'flex' ? '90%' : '100%'};
+    margin: ${props => props.position === 'flex' ? '0 0 16px 0' : 'none'};
+  }
+  width: ${props => props.position === 'flex' ? '90%' : 'calc(50% - 16px)'};
+  margin: ${props => props.position === 'flex' ? '0 0 16px 0' : '8px'};
+  height: 250px;
   box-shadow: ${design.cardBoxShadow};
 `
 const ToogleWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  background-color: ${backgroundColor};
 `
 
 const IconWrapper = styled.div`
-  display: ${props => props.square ? 'grid' : 'flex'};
-  flex-direction: ${props => props.square ? 'none' : 'column'};
-  align-items: ${props => props.square ? 'none' : 'center'};
-  justify-content: ${props => props.square ? 'none' : 'center'};
-  grid-template-rows: ${props => props.square ? '1fr 1fr' : 'none'};
-  grid-template-columns: ${props => props.square ? '1fr 1fr' : 'none'};
-  padding: ${props => props.square ? '4px 0 0 4px' : '2px'};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
   margin: 16px 24px 0 0;
   width: 30px;
   height: 30px;
-  border: 1px solid black;
   cursor: pointer;
-`
-
-const IconTrail = styled.span`
-  margin-bottom: 2px;
-  width: 20px;
-  height: 2px;
-  background-color: black;
-`
-
-const IconSquare = styled.div`
-  width: 10px;
-  height: 10px;
-  border: 1px solid black;
 `
 
 export default () => {
   const [position, setPosition] = useState('grid')
+  const [childrenPosition, setChildrenPosition] = useState('grid')
+
   return (
     <Layout color={'light'} position={position}>
-      <ToogleWrapper>
-        <IconWrapper onClick={() => setPosition('flex')}>
-          <IconTrail />
-          <IconTrail />
-          <IconTrail />
-        </IconWrapper>
-        <IconWrapper square onClick={() => setPosition('grid')}>
-          <IconSquare />
-          <IconSquare />
-          <IconSquare />
-          <IconSquare />
-        </IconWrapper>
-      </ToogleWrapper>
-      <CardWrapper>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </CardWrapper>
+      <Section>
+        <ToogleWrapper>
+          <IconWrapper onClick={() =>  {
+            setPosition('flex')
+            setChildrenPosition('flex')
+            console.log(childrenPosition)
+          }}>
+            <Burger />
+          </IconWrapper>
+          <IconWrapper onClick={() =>  {
+            setPosition('grid')
+            setChildrenPosition('grid')
+            console.log(childrenPosition)
+          }}>
+            <Square />
+          </IconWrapper>
+        </ToogleWrapper>
+        <CardWrapper>
+          <Card position={childrenPosition} />
+          <Card position={childrenPosition} />
+          <Card position={childrenPosition} />
+          <Card position={childrenPosition} />
+        </CardWrapper>
+      </Section>
     </Layout> 
   )
 }

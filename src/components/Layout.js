@@ -44,11 +44,13 @@ export const cardPosition = theme('position', {
   grid:`
     @supports (display: grid) {
       display: grid;
+      grid-gap: 24px;
       grid-template-rows: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
       justify-items: center;
     }
     display: flex;
+    flex-wrap: wrap;
   `
 })
 
