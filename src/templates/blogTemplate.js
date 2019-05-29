@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from '../components/Layout'
-import { Wrapper, Title, Loader } from './blogTemplate.style'
+import Loader from '../components/Loader'
+import {
+  Wrapper,
+  Title,
+  LoaderWrapper,
+  ContentWrapper
+} from './blogTemplate.style'
 
 export default function Template ({
   data,
@@ -17,25 +23,30 @@ export default function Template ({
     setTimeout(() => {
       setVisibility(true)
     }, 3000)
-  }, []);
+  }, [])
+  
   return (
     <Layout color={color} layout={layout}>
+
       <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
+
       <button onClick={() => layout === 'cozy' ? setLayout('compact') : setLayout('cozy')}>Compact Layout</button>
+      
       <button onClick={() => {
         color === 'light' ? setColor('dark') : setColor('light')
         layout === 'cozy' ? setLayout('compact') : setLayout('cozy')
       }}>Ambos</button>
+      
       <Wrapper>
-        <div style={{display: visibility ? 'none': 'block' }}>
+        <LoaderWrapper visibility={visibility}>
           <Loader/>
-        </div>
-        <div style={{display: visibility ? 'block' : 'none' }}>
+        </LoaderWrapper>
+        <ContentWrapper visibility={visibility}>
           <Title>{frontmatter.title}</Title>
           <div
             dangerouslySetInnerHTML={{ __html: html }}
           />
-        </div>
+        </ContentWrapper>
       </Wrapper>
     </Layout>
   )

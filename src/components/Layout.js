@@ -67,11 +67,8 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: none;
-
-  &.visible {
-    background-color: rgba(160, 158, 47, 0.3);
-    transition: all .2s linear;
-  }
+  background-color: ${props => props.overlay && 'rgba(160, 158, 47, 0.3)'};
+  transition: ${props => props.overlay && 'all .2s linear'};
 `
 
 export const GlobalStyle = createGlobalStyle`
@@ -97,7 +94,7 @@ const Layout = ({ children, color, layout, position }) => {
   useEffect(() => {
     setInterval(() => {
       let currTime = moment()
-      if(currTime.format('H') <= 5 || currTime.format('H') >= 23) {
+      if(currTime.format('H') <= 5 || currTime.format('H') >= 17) {
         setOverlay(true)
         return
       } 
@@ -111,7 +108,7 @@ const Layout = ({ children, color, layout, position }) => {
         <GlobalStyle />
         <Header />
         {children}
-        <Overlay className={overlay ? 'visible' : ''}/>
+        <Overlay overlay={overlay}/>
       </Fragment>
     </ThemeProvider>
   )

@@ -54,17 +54,15 @@ export default () => {
     <Layout color={'light'} position={position}>
       <Section>
         <ToogleWrapper>
-          <IconWrapper onClick={() =>  {
+          <IconWrapper onClick={() => {
             setPosition('flex')
             setChildrenPosition('flex')
-            console.log(childrenPosition)
           }}>
             <Burger />
           </IconWrapper>
           <IconWrapper onClick={() =>  {
             setPosition('grid')
             setChildrenPosition('grid')
-            console.log(childrenPosition)
           }}>
             <Square />
           </IconWrapper>
