@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import React, { Fragment, useState, useEffect } from 'react'
+import moment from 'moment'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Header from './Header'
 import theme from 'styled-theming'
 
@@ -59,6 +60,20 @@ export const padding = theme('layout', {
   cozy: '1.5rem'
 })
 
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  &.visible {
+    background-color: rgba(160, 158, 47, 0.3);
+    transition: all .2s linear;
+  }
+`
+
 export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
   @import url('https://fonts.googleapis.com/css?family=Poppins:500,600,700');
@@ -76,12 +91,27 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 const Layout = ({ children, color, layout, position }) => {
+
+  const [overlay, setOverlay] = useState(false)
+
+  useEffect(() => {
+    setInterval(() => {
+      let currTime = moment()
+      if(currTime.format('H') <= 5 || currTime.format('H') >= 23) {
+        setOverlay(true)
+        return
+      } 
+      setOverlay(false)
+    }, 100)
+  }, []);
+
   return (
     <ThemeProvider theme={{ mode: color, layout: layout, position: position }}>
       <Fragment>
         <GlobalStyle />
         <Header />
         {children}
+        <Overlay className={overlay ? 'visible' : ''}/>
       </Fragment>
     </ThemeProvider>
   )
