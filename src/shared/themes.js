@@ -6,9 +6,29 @@ export const backgroundColor = theme('mode', {
   dark: design.outerSpace
 })
 
+export const backgroundCard = theme('mode', {
+  light: design.white,
+  dark: design.capeCod
+})
+
+export const backgroundIcon = theme('mode', {
+  light: design.capeCod,
+  dark: design.white
+})
+
+export const textIcon = theme('mode', {
+  light: design.white,
+  dark: design.capeCod
+})
+
 export const textColor = theme('mode', {
   light: design.outerSpace,
   dark: design.wildSand
+})
+
+export const titleColor = theme('mode', {
+  light: design.apple,
+  dark: design.deepBlush
 })
 
 export const cardPosition = theme('position', {

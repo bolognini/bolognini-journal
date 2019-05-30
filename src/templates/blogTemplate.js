@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from '../components/Layout'
 import Loader from '../components/Loader'
+import ThemeButton from '../components/ThemeButton'
 import {
   Wrapper,
   Title,
@@ -25,10 +26,7 @@ export default function Template ({
   }, [])
   
   return (
-    <Layout color={color}>
-
-      <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
-      
+    <Layout color={color}>      
       <Wrapper>
         <LoaderWrapper visibility={visibility}>
           <Loader/>
@@ -40,6 +38,14 @@ export default function Template ({
           />
         </ContentWrapper>
       </Wrapper>
+      <div
+        onClick={() => {
+          color === 'light' ?
+          setColor('dark') :
+          setColor('light')
+        }}>
+        <ThemeButton />
+      </div>
     </Layout>
   )
 }

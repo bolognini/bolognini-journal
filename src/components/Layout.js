@@ -36,7 +36,7 @@ const Layout = ({ children, color, layout, position }) => {
   useEffect(() => {
     setInterval(() => {
       let currTime = moment()
-      if(currTime.format('H') <= 5 || currTime.format('H') >= 20) {
+      if(currTime.format('H') <= 5 || currTime.format('H') >= 23) {
         localStorage.setItem('overlay', true)
         return
       } 

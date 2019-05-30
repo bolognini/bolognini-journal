@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { design } from '../shared/design'
-import { backgroundColor, textColor } from '../shared/themes'
+import { backgroundColor, textColor, titleColor } from '../shared/themes'
 
 export const Wrapper = styled.div`
   background-color: ${backgroundColor};
@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   min-height: calc(100vh - 271px);
 
   img {
-    width: 100%;
+    width: 50%;
   }
 
   pre {
@@ -32,8 +32,8 @@ export const Wrapper = styled.div`
 
   blockquote {
     padding: 30px 0;
-    font-size: 24px;
-    color: ${design.burntSienna};
+    font-size: ${design.hugeText};
+    color: ${titleColor};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,17 +51,21 @@ export const Wrapper = styled.div`
   }
 
   a {
-    color: ${design.burntSienna};
+    color: ${titleColor};
   }
 
   li {
     list-style: none;
   }
+
+  p {
+    line-height: 1.5em;
+  }
 `
 
 export const Title = styled.h1`
-  color: pink;
-  background-color: royalblue;
+  font-size: ${design.largeTitle};
+  color: ${titleColor};
 `
 
 export const LoaderWrapper = styled.div`

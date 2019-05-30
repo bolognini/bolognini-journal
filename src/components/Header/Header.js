@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "gatsby"
+import { Link } from 'gatsby'
 import {
   HeaderWrapper,
   LogoWrapper,
@@ -12,13 +12,15 @@ import Logo from '../../../static/assets/home.svg'
 const Header = () => {
   return (
     <HeaderWrapper>
-      <LogoWrapper>
-        <Logo />
-      </LogoWrapper>
+      <Link to="/">
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
+      </Link>
       <NavBar>
         <NavList>
           <NavItem>
-            <Link to="/">Posts</Link>
+            <Link to="/blog/example">Posts</Link>
           </NavItem>
           <NavItem>
             <Link to="/">About</Link>
