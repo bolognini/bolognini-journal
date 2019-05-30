@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { design, backgroundColor, textColor, padding } from '../components/Layout'
+import { design } from '../shared/design'
+import { backgroundColor, textColor } from '../shared/themes'
 
 export const Wrapper = styled.div`
   background-color: ${backgroundColor};
@@ -12,8 +13,8 @@ export const Wrapper = styled.div`
   }
 
   pre {
-    background-color: #2e2d2d;
-    color: #33FF33;
+    background-color: ${design.mineShaft};
+    color: ${design.harlequin};
     padding: 20px;
     border-radius: 4px;
 
@@ -23,8 +24,8 @@ export const Wrapper = styled.div`
   }
 
   code {
-    background-color: #2e2d2d;
-    color: #33FF33;
+    background-color: ${design.mineShaft};
+    color: ${design.harlequin};
     padding: 10px;
     border-radius: 4px;
   }
@@ -61,7 +62,6 @@ export const Wrapper = styled.div`
 export const Title = styled.h1`
   color: pink;
   background-color: royalblue;
-  padding: ${padding};
 `
 
 export const LoaderWrapper = styled.div`

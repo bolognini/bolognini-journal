@@ -1,0 +1,23 @@
+export const design = {
+  rajah: '#F6BD60',
+  burntSienna: '#E9724C',
+  wildSand: '#F5F4F4',
+  mineShaft: '#2e2d2d',
+  harlequin: '#33FF33',
+  royalBlue: '#4169e1',
+  luxorGold: 'rgba(160, 158, 47, 0.3)',
+  outerSpace: '#313638',
+  primaryFont: 'Poppins',
+  secondaryFont: 'Lato',
+  hugeTitle: '64px',
+  largeTitle: '48px',
+  mediumTitle: '40px',
+  smallTitle: '32px',
+  hugeText: '24px',
+  largeText: '18px',
+  mediumText: '16px',
+  smallText: '12px',
+  cardBoxShadow: '6px 8px 20px 0 rgba(0, 0, 0, 0.08)',
+  buttonBoxShadow: '0 2px 10px 2px rgba(0, 0, 0, 0.2)',
+  inputBoxShadow: '0 2px 10px 2px rgba(0, 0, 0, 0.07)'
+}

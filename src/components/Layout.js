@@ -1,64 +1,8 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import moment from 'moment'
+import React, { Fragment, useEffect } from 'react'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import moment from 'moment'
+import { design } from '../shared/design'
 import Header from './Header'
-import theme from 'styled-theming'
-
-export const design = {
-  rajah: '#F6BD60',
-  burntSienna: '#E9724C',
-  wildSand: '#F5F4F4',
-  hippieBlue: '#5C9EAD',
-  outerSpace: '#313638',
-  primaryFont: 'Poppins',
-  secondaryFont: 'Lato',
-  hugeTitle: '64px',
-  largeTitle: '48px',
-  mediumTitle: '40px',
-  smallTitle: '32px',
-  hugeText: '24px',
-  largeText: '18px',
-  mediumText: '16px',
-  smallText: '12px',
-  cardBoxShadow: '6px 8px 20px 0 rgba(0, 0, 0, 0.08)',
-  buttonBoxShadow: '0 2px 10px 2px rgba(0, 0, 0, 0.2)',
-  inputBoxShadow: '0 2px 10px 2px rgba(0, 0, 0, 0.07)'
-}
-
-export const backgroundColor = theme('mode', {
-  light: design.wildSand,
-  dark: design.outerSpace
-})
-
-export const textColor = theme('mode', {
-  light: design.outerSpace,
-  dark: design.wildSand
-})
-
-export const cardPosition = theme('position', {
-  flex:`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  `,
-  grid:`
-    @supports (display: grid) {
-      display: grid;
-      grid-gap: 24px;
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-      justify-items: center;
-    }
-    display: flex;
-    flex-wrap: wrap;
-  `
-})
-
-export const padding = theme('layout', {
-  compact: '0.5rem',
-  cozy: '1.5rem'
-})
 
 export const Overlay = styled.div`
   position: fixed;
@@ -67,8 +11,8 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-color: ${props => props.overlay && 'rgba(160, 158, 47, 0.3)'};
-  transition: ${props => props.overlay && 'all .2s linear'};
+  background-color: ${props => props.overlay === 'true' && design.luxorGold};
+  transition: ${props => props.overlay === 'true' && 'all .2s linear'};
 `
 
 export const GlobalStyle = createGlobalStyle`
@@ -89,16 +33,14 @@ export const GlobalStyle = createGlobalStyle`
 
 const Layout = ({ children, color, layout, position }) => {
 
-  const [overlay, setOverlay] = useState(false)
-
   useEffect(() => {
     setInterval(() => {
       let currTime = moment()
-      if(currTime.format('H') <= 5 || currTime.format('H') >= 17) {
-        setOverlay(true)
+      if(currTime.format('H') <= 5 || currTime.format('H') >= 20) {
+        localStorage.setItem('overlay', true)
         return
       } 
-      setOverlay(false)
+      localStorage.setItem('overlay', false)
     }, 100)
   }, []);
 
@@ -108,7 +50,7 @@ const Layout = ({ children, color, layout, position }) => {
         <GlobalStyle />
         <Header />
         {children}
-        <Overlay overlay={overlay}/>
+        <Overlay overlay={localStorage.getItem('overlay')}/>
       </Fragment>
     </ThemeProvider>
   )

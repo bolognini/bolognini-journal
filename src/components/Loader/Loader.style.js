@@ -153,7 +153,7 @@ const rotate = keyframes`
 `
 
 export const LoaderComponent = styled.div`
-  color: #ffffff;
+  color: white;
   font-size: 90px;
   overflow: hidden;
   width: 1em;

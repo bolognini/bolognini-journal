@@ -17,7 +17,6 @@ export default function Template ({
 
   const [color, setColor] = useState('light')
   const [visibility, setVisibility] = useState(false)
-  const [layout, setLayout] = useState('cozy')
   
   useEffect(() => {
     setTimeout(() => {
@@ -26,16 +25,9 @@ export default function Template ({
   }, [])
   
   return (
-    <Layout color={color} layout={layout}>
+    <Layout color={color}>
 
       <button onClick={() => color === 'light' ? setColor('dark') : setColor('light')}>Dark mode</button>
-
-      <button onClick={() => layout === 'cozy' ? setLayout('compact') : setLayout('cozy')}>Compact Layout</button>
-      
-      <button onClick={() => {
-        color === 'light' ? setColor('dark') : setColor('light')
-        layout === 'cozy' ? setLayout('compact') : setLayout('cozy')
-      }}>Ambos</button>
       
       <Wrapper>
         <LoaderWrapper visibility={visibility}>
